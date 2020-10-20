@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package mp3p1;
-
 /**
  *
  * @author ALEJANDRA
@@ -16,7 +15,9 @@ public class MP3p1 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println("hola mundo");
+        System.out.println("pues hola");
+        interfaz m = new interfaz();
+        m.setVisible(true);
     }
-    
+
 }
