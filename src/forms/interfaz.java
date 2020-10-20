@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mp3p1;
+package forms;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -392,6 +392,8 @@ public class interfaz extends javax.swing.JFrame {
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
         // TODO add your handling code here:
+        Buscador buscar=new Buscador();
+        buscar.setVisible(true);
     }//GEN-LAST:event_agregarActionPerformed
 
     /**
