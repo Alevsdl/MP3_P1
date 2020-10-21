@@ -15,12 +15,15 @@ public class Cancion {
     private String album;
     private String anio;
     
-    Cancion(String titulo,String artista ,String album,String anio){
+    public Cancion(String titulo,String artista ,String album,String anio){
         this.titulo=titulo;
         this.artista=artista;
         this.album=album;
         this.anio=anio;
     }
+     public Cancion(){
+       
+   }
     
     public String getTitulo() {
         return titulo;
@@ -52,5 +55,10 @@ public class Cancion {
 
     public void setAnio(String anio) {
         this.anio = anio;
+    }
+    
+    @Override
+    public String toString() {
+        return titulo;
     }
 }

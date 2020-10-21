@@ -5,6 +5,22 @@
  */
 package forms;
 
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import mp3p1.Archivo;
+import mp3p1.Cancion;
+
 /**
  *
  * @author Diego
@@ -35,9 +51,19 @@ public class Buscador extends javax.swing.JFrame {
 
         btnSeleccionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/vidrio-de-aumento.png"))); // NOI18N
         btnSeleccionar.setText("Seleccionar");
+        btnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeleccionarActionPerformed(evt);
+            }
+        });
 
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/guardar-el-archivo.png"))); // NOI18N
         btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -46,7 +72,7 @@ public class Buscador extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtUrl, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -68,6 +94,272 @@ public class Buscador extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
+        //Creamos el objeto JFileChooser
+        JFileChooser fc = new JFileChooser();
+        //Indicamos lo que podemos seleccionar
+        fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        //Creamos el filtro
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.MP3", "mp3");
+        //Le indicamos el filtro
+        fc.setFileFilter(filtro);
+        //Abrimos la ventana, guardamos la opcion seleccionada por el usuario
+        int seleccion = fc.showOpenDialog(this);
+        //Si el usuario, pincha en aceptar
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+            //Seleccionamos el fichero
+            File fichero = fc.getSelectedFile();
+            //revisamos si es una carpeta
+            if (fichero.isDirectory()) {
+                //Ecribe la ruta del fichero seleccionado en el campo de texto
+                this.txtUrl.setText(fichero.getAbsolutePath());
+            } else {
+                JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UNA CARPETA");
+                this.txtUrl.setText("");
+
+            }
+
+        }
+
+
+    }//GEN-LAST:event_btnSeleccionarActionPerformed
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+       
+        if (this.txtUrl.getText().length() == 0) {
+            JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UNA CARPETA");
+        } else {
+            ArrayList<Cancion> canciones = new ArrayList<Cancion>();
+            String url = this.txtUrl.getText();
+            File carpeta = new File(url);
+            String[] lista = carpeta.list();
+            for (String file : lista) {
+                File aux = new File(carpeta.getAbsolutePath(), file);
+                if (aux.isDirectory()) {
+                    //es una carpeta y hay que revisarla
+                    ArrayList<Cancion> AuxList= extracorRe(carpeta.getAbsolutePath()+File.separator+file);
+                    for (Cancion track:AuxList) {
+                    canciones.add(track);
+                    }
+                } else {
+                    //es un archivo se revisa si es de extencion mp3
+                    if (isMp3(file)) {
+                        //si tiene una extencion mp3
+                          String pading = carpeta.getAbsolutePath() + File.separator + file;
+                          Cancion cancion=new Cancion();
+                        try {
+                            cancion = extractor(pading);
+                        } catch (IOException ex) {
+                            Logger.getLogger(Buscador.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                         if (cancion != null) {
+                             canciones.add(cancion);
+                        }
+                    }
+                }
+
+            }
+            //la lista de canciones ya estara llena para escribir las canciones en el archivo
+            Archivo archivo=new Archivo();
+            try {
+                archivo.escribir(canciones);
+                Principal ventana=new Principal();
+                ventana.setVisible(true);
+                this.dispose();
+                
+            } catch (IOException ex) {
+                Logger.getLogger(Buscador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        
+        
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    boolean isMp3(String valor) {
+        boolean bandera = false;
+        String[] cond = valor.split("[.]");
+        for (int i = 0; i < cond.length; i++) {
+            if (cond[i].equals("mp3")) {
+                bandera=true;
+            }
+        }
+       return bandera; 
+    }
+    
+     int whichID(String id) {
+        /*
+         1 titulo  TIT2 0 TT2
+         2 artista TPE1 0 TP1
+         3 album   TALB o TAL
+         4 anio    TYER o TYE
+         */
+        if (id.equals("TIT2") || id.equals("TT2")) {
+            //encontro el titulo
+            return 1;
+        } else if (id.equals("TPE1") || id.equals("TP1")) {
+            //encontro el artista
+            return 2;
+        } else if (id.equals("TALB") || id.equals("TAL")) {
+            //encontro el album
+            return 3;
+        } else if (id.equals("TYER") || id.equals("TYE")) {
+            //encontro el año
+            return 4;
+        } else {
+            //no era info importante
+            return 0;
+        }
+    }
+
+     Cancion extractor(String ruta) throws FileNotFoundException, IOException {
+        FileInputStream archivo = new FileInputStream(ruta);
+        DataInputStream lector = new DataInputStream(archivo);
+        String tag = new String(lector.readNBytes(3), StandardCharsets.UTF_8);
+        Byte version = lector.readByte();
+        lector.readByte();
+        Byte Flag = lector.readByte();
+        int size = lector.readInt();
+        if (tag.equals("ID3")) {
+            String valor = null;
+            String auxTitulo = "n/a", auxArtista = "n/a", auxAlbum = "n/a", auxAnio = "n/a";
+            Byte V2 = 02, V3 = 03;
+            //variables usadas
+            String ID;
+            byte Texteucoding;
+            int tamanio;
+            size -= 10;
+            //diferenciar entre version 3 y 2
+            if (version == V2) {
+                byte relleno = 00;
+                while (size > 0) {
+                    ID = new String(lector.readNBytes(3), StandardCharsets.UTF_8);
+                    //leer el tamañio 
+                    byte[] aux = new byte[4];
+                    aux[0] = 00;
+                    for (int i = 1; i <= 3; i++) {
+                        aux[i] = lector.readByte();
+                    }
+                    Texteucoding = lector.readByte();
+                    tamanio = ByteBuffer.wrap(aux).getInt();
+                    if (tamanio == 0) {
+                        break;//para que no quede en un loop infinito y un error
+                    }
+                    valor = new String(lector.readNBytes(tamanio - 1), StandardCharsets.UTF_8);
+                    switch (whichID(ID)) {
+                        case 1:
+                            //1 titulo
+                            auxTitulo = valor;
+
+                            break;
+                        case 2:
+                            //2 artista
+                            auxArtista = valor;
+
+                            break;
+                        case 3:
+                            //3 album
+                            auxAlbum = valor;
+
+                            break;
+                        case 4:
+                            //4 anio
+                            auxAnio = valor;
+
+                            break;
+                        default:
+                        //System.out.println("no es informacion util");
+                    }
+                    size = size - (10 + tamanio);
+                }
+                Cancion aux = new Cancion(auxTitulo, auxArtista, auxAlbum, auxAnio);
+                return aux;
+            } else if (version == V3) {
+                while (size > 0) {
+                    ID = new String(lector.readNBytes(4), StandardCharsets.UTF_8);
+                    tamanio = lector.readInt();
+                    if (tamanio == 0) {
+                        break;//para que no quede en un loop infinito y un error
+                    }
+                    String bandera = new String(lector.readNBytes(2), StandardCharsets.UTF_8);
+                    Texteucoding = lector.readByte();
+                    if (tamanio != 0) {
+                        valor = new String(lector.readNBytes(tamanio - 1), StandardCharsets.UTF_8);
+                    }
+                    switch (whichID(ID)) {
+                        case 1:
+                            //1 titulo
+                            auxTitulo = valor;
+
+                            break;
+                        case 2:
+                            //2 artista
+                            auxArtista = valor;
+
+                            break;
+                        case 3:
+                            //3 album
+                            auxAlbum = valor;
+
+                            break;
+                        case 4:
+                            //4 anio
+                            auxAnio = valor;
+
+                            break;
+                        default:
+                    }
+
+                    size = size - (10 + tamanio);
+
+                }
+
+                Cancion aux = new Cancion(auxTitulo, auxArtista, auxAlbum, auxAnio);
+                return aux;
+            }
+
+        } else {
+            return null;
+        }
+        return null;
+    }
+     
+     ArrayList<Cancion> extracorRe(String ruta){
+          ArrayList<Cancion> canciones=new ArrayList<Cancion>(); 
+          ArrayList<Cancion> AuxList= new ArrayList<Cancion>(); 
+         File carpeta=new File(ruta);
+          String[] lista = carpeta.list();
+            for (String file : lista) {
+                File aux = new File(carpeta.getAbsolutePath(), file);
+                if (aux.isDirectory()) {
+                    //es una carpeta y hay que revisarla
+                   AuxList= extracorRe(carpeta.getAbsolutePath()+File.separator+file);
+                    for (Cancion track:AuxList) {
+                    canciones.add(track);
+                    }
+                } else {
+                    //es un archivo se revisa si es de extencion mp3
+                    if (isMp3(file)) {
+                        //si tiene una extencion mp3
+                          String pading = carpeta.getAbsolutePath() + File.separator + file;
+                          Cancion cancion=new Cancion();
+                        try {
+                            cancion = extractor(pading);
+                        } catch (IOException ex) {
+                            Logger.getLogger(Buscador.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                         if (cancion != null) {
+                             canciones.add(cancion);
+                        }
+                    }
+                }
+
+            }
+            
+           
+         
+            return canciones;
+     }
     /**
      * @param args the command line arguments
      */
