@@ -5,7 +5,7 @@
  */
 package mp3p1;
 
-import forms.interfaz;
+import forms.Principal;
 
 /**
  *
@@ -19,7 +19,7 @@ public class MP3p1 {
     public static void main(String[] args) {
         // TODO code application logic here
         //System.out.println("pues hola");
-        interfaz m = new interfaz();
+        Principal m = new Principal();
         m.setVisible(true);
     }
 
