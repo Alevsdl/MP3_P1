@@ -26,7 +26,7 @@ public class Principal extends javax.swing.JFrame {
      * Creates new form Principal
      */
     DefaultListModel modeloLista = new DefaultListModel();
-    DefaultListModel listaAuxiliar= new DefaultListModel();
+    DefaultListModel listaAuxiliar = new DefaultListModel();
     ArrayList<Cancion> canciones = new ArrayList<Cancion>();
 
     public Principal() throws IOException {
@@ -303,13 +303,15 @@ public class Principal extends javax.swing.JFrame {
         this.lbAlbum.setText(aux.getAlbum());
         this.lbAnio.setText(aux.getAnio());
     }//GEN-LAST:event_LcancionesValueChanged
-/////////////////////////////////////////////////////////////MIRARRRRRRRRRRRRRRRR//////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
+        this.jList1.removeAll();
+        this.listaAuxiliar.removeAllElements();
         String artista = this.jTextField1.getText();//recibe el texto del buscador
         for (int i = 0; i < modeloLista.size(); i++) {//recorre el listado de canciones
-            Cancion aux=(Cancion) modeloLista.getElementAt(i);// variable temporal con cada cancion
-            if (artista==aux.getArtista()) { //si el buscador es igual a un artista de la lista
+            Cancion aux = (Cancion) modeloLista.getElementAt(i);// variable temporal con cada cancion
+            if (artista.equals(aux.getArtista())) { //si el buscador es igual a un artista de la lista
                 //System.out.println("siiii");
                 listaAuxiliar.addElement(aux); //se grega esa cancion a la lista auxiliar
             }
@@ -327,7 +329,6 @@ public class Principal extends javax.swing.JFrame {
         this.lbAlbum.setText(aux.getAlbum());
         this.lbAnio.setText(aux.getAnio());
     }//GEN-LAST:event_jList1ValueChanged
-
 
     /**
      * @param args the command line arguments
