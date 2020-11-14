@@ -143,9 +143,10 @@ public class Principal extends javax.swing.JFrame {
         panelOpciones.setBackground(new java.awt.Color(51, 51, 51));
         panelOpciones.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel15.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(204, 204, 204));
         jLabel15.setText("Buscar ");
+        jLabel15.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
 
         txtBuscar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtBuscar.setForeground(new java.awt.Color(51, 51, 51));
@@ -158,14 +159,24 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        rArtista.setBackground(new java.awt.Color(51, 51, 51));
+        rArtista.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        rArtista.setForeground(new java.awt.Color(204, 204, 204));
         rArtista.setText("Artista");
 
+        rTitulo.setBackground(new java.awt.Color(51, 51, 51));
+        rTitulo.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        rTitulo.setForeground(new java.awt.Color(204, 204, 204));
         rTitulo.setText("Titulo");
 
+        rAnio.setBackground(new java.awt.Color(51, 51, 51));
+        rAnio.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        rAnio.setForeground(new java.awt.Color(204, 204, 204));
         rAnio.setText("Año");
 
+        jLabel2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel2.setText("ATRIBUTOS:");
+        jLabel2.setText("Atributos:");
 
         javax.swing.GroupLayout panelOpcionesLayout = new javax.swing.GroupLayout(panelOpciones);
         panelOpciones.setLayout(panelOpcionesLayout);
@@ -176,42 +187,39 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel15)
                     .addGroup(panelOpcionesLayout.createSequentialGroup()
-                        .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panelOpcionesLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
                                 .addComponent(rArtista)
                                 .addGap(20, 20, 20)
-                                .addComponent(rTitulo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(rAnio))
-                            .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(48, Short.MAX_VALUE))
+                                .addComponent(rTitulo)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rAnio)
+                            .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         panelOpcionesLayout.setVerticalGroup(
             panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelOpcionesLayout.createSequentialGroup()
+            .addGroup(panelOpcionesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelOpcionesLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnBuscar))
-                    .addGroup(panelOpcionesLayout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rArtista)
-                            .addComponent(rTitulo)
-                            .addComponent(rAnio)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(53, 53, 53))
+                .addComponent(jLabel15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rArtista)
+                    .addComponent(rTitulo)
+                    .addComponent(rAnio)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
+                .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
-        getContentPane().add(panelOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
+        getContentPane().add(panelOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 450, 160));
 
         PanelLista.setBackground(new java.awt.Color(51, 51, 51));
         PanelLista.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -232,7 +240,7 @@ public class Principal extends javax.swing.JFrame {
             PanelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelListaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
                 .addContainerGap())
         );
         PanelListaLayout.setVerticalGroup(
@@ -243,7 +251,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(PanelLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 225, 465, 320));
+        getContentPane().add(PanelLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 225, 460, 310));
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -269,14 +277,21 @@ public class Principal extends javax.swing.JFrame {
         jLabel118.setForeground(new java.awt.Color(204, 204, 204));
         jLabel118.setText("INFORMACIÓN DE LA CANCIÓN");
 
+        lbTitulo.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         lbTitulo.setEnabled(false);
 
+        lbArtista.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         lbArtista.setEnabled(false);
 
+        lbAlbum.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         lbAlbum.setEnabled(false);
 
+        lbAnio.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         lbAnio.setEnabled(false);
 
+        rModificar.setBackground(new java.awt.Color(51, 51, 51));
+        rModificar.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        rModificar.setForeground(new java.awt.Color(204, 204, 204));
         rModificar.setText("Modificar");
         rModificar.setEnabled(false);
         rModificar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -285,6 +300,9 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        Btncomformar.setBackground(new java.awt.Color(51, 51, 51));
+        Btncomformar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        Btncomformar.setForeground(new java.awt.Color(204, 204, 204));
         Btncomformar.setText("Comfirmar");
         Btncomformar.setEnabled(false);
         Btncomformar.addActionListener(new java.awt.event.ActionListener() {
@@ -293,6 +311,9 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        btnLetra.setBackground(new java.awt.Color(51, 51, 51));
+        btnLetra.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnLetra.setForeground(new java.awt.Color(204, 204, 204));
         btnLetra.setText("Ver Letra");
         btnLetra.setEnabled(false);
         btnLetra.addActionListener(new java.awt.event.ActionListener() {
@@ -301,6 +322,9 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        btnEliminar.setBackground(new java.awt.Color(51, 51, 51));
+        btnEliminar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(204, 204, 204));
         btnEliminar.setText("Eliminar");
         btnEliminar.setEnabled(false);
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -313,44 +337,43 @@ public class Principal extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(Btncomformar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnLetra)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEliminar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(106, 106, 106)
+                        .addComponent(rModificar)))
+                .addGap(21, 21, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel114)
-                    .addComponent(jLabel117)
-                    .addComponent(jLabel116)
-                    .addComponent(jLabel115))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lbTitulo)
-                    .addComponent(lbArtista)
-                    .addComponent(lbAlbum)
-                    .addComponent(lbAnio, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel114)
+                            .addComponent(jLabel117)
+                            .addComponent(jLabel116)
+                            .addComponent(jLabel115))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lbTitulo)
+                            .addComponent(lbArtista)
+                            .addComponent(lbAlbum)
+                            .addComponent(lbAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel118))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 69, Short.MAX_VALUE)
-                .addComponent(jLabel118)
-                .addGap(34, 34, 34))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnEliminar)
-                        .addGap(0, 196, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(rModificar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Btncomformar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLetra)))
-                .addGap(20, 20, 20))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(35, 35, 35)
                 .addComponent(jLabel118)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -368,16 +391,16 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel114)
                     .addComponent(lbAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addComponent(rModificar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rModificar)
                     .addComponent(Btncomformar)
-                    .addComponent(btnLetra))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnEliminar)
-                .addGap(12, 12, 12))
+                    .addComponent(btnLetra)
+                    .addComponent(btnEliminar))
+                .addGap(53, 53, 53))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 180, 320, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 180, 320, 350));
 
         agregar.setBackground(new java.awt.Color(102, 102, 102));
         agregar.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -388,7 +411,7 @@ public class Principal extends javax.swing.JFrame {
                 agregarActionPerformed(evt);
             }
         });
-        getContentPane().add(agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 90, 280, -1));
+        getContentPane().add(agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 90, 320, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -40, 1040, 690));
@@ -532,7 +555,7 @@ public class Principal extends javax.swing.JFrame {
             btnEliminar.setEnabled(false);
         }
     }//GEN-LAST:event_rModificarMouseClicked
-
+/////////////////////////////////////////////////////////////////////Modificar 
     private void BtncomformarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtncomformarActionPerformed
         // TODO add your handling code here:
         int n = JOptionPane.showConfirmDialog(null, "Desea confirmar los cambios", "Modificar?", JOptionPane.YES_NO_OPTION);
@@ -562,7 +585,7 @@ public class Principal extends javax.swing.JFrame {
         } else {
         }
     }//GEN-LAST:event_BtncomformarActionPerformed
-
+/////////////////////////////////////////////////////////////////////eliminar
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
         int n = JOptionPane.showConfirmDialog(null, "Desea eliminar el elemento seleccionado ", "?", JOptionPane.YES_NO_OPTION);
