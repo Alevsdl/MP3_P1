@@ -62,11 +62,20 @@ public class Principal extends javax.swing.JFrame {
     }
 
     public void limpiarLista() throws IOException {
+    
+        
+
+        this.Lcanciones.removeAll();
+
         Archivo archivo = new Archivo();
         canciones = archivo.leerTodas();
-        for (Cancion e : canciones) {
-            listaCanciones.addElement(e);
+
+        for (Cancion song : canciones) {
+            listaCanciones.addElement(song);
         }
+        //Lcanciones.removeAll();
+        
+        //this.Lcanciones.setModel(listaCanciones);
 
     }
 
@@ -594,7 +603,10 @@ public class Principal extends javax.swing.JFrame {
             try {
                 archivo.Eliminar();
                 JOptionPane.showMessageDialog(null, "CANCION ELIMINADA");
+                
                 limpiarLista();
+                Lcanciones.repaint();
+                
             } catch (IOException ex) {
                 Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
             }

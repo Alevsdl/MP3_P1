@@ -1,6 +1,6 @@
 # ALMACEN PARA COLECCION DE MUSICA
 
-> conciste en un aplicación para mantener la información de una coleccción de música
+> conciste en un aplicación para mantener la información y modificación de una coleccción de música
 ---
 
 ### INTEGRANTES
@@ -8,7 +8,7 @@
  | NOMBRE | CARNET |
  | -------|--------|
  | Diego René Galán Chavéz |1539819 |
- | Veronica Alejandra Santos de León   | 1537419 |
+ | Verónica Alejandra Santos de León   | 1537419 |
 
 ---
 ### ESPECIFICACIONES
@@ -21,7 +21,7 @@ El programa tiene dos formas de abrir la primera es si no se cuenta con ninguna 
 
 cuando termine con esto mostrara otro formulario donde se puede observar una lista de las canciones encontradas y se puede acceder a las especificaciones de cada canción solo con hacer clic sobre ella.
 
-la segunda forma de arranque del programa es que si ya cuenta con canciones solo mostrara el formulario donde se puede ver la información de las canciones.
+la segunda forma de arranque del programa es que si ya cuenta con canciones solo mostrara el formulario donde se puede ver la información de las canciones. El programa es capaz de modificar la información de cada canción o eliminar canciones.
 
 ---
 ### OBSERVACIONES
