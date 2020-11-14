@@ -28,6 +28,8 @@ public class MP3p1 {
         } else {
             Buscador venta = new Buscador();
             venta.setVisible(true);
+            byte reset=0;
+            archivo.setId(reset);
         }
     }
 

@@ -126,6 +126,7 @@ public class Buscador extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
        
+         Archivo archivo=new Archivo();
         if (this.txtUrl.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UNA CARPETA");
         } else {
@@ -149,6 +150,8 @@ public class Buscador extends javax.swing.JFrame {
                           Cancion cancion=new Cancion();
                         try {
                             cancion = extractor(pading);
+                            cancion.setId(archivo.getId());
+                            archivo.incrementar();
                         } catch (IOException ex) {
                             Logger.getLogger(Buscador.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -160,7 +163,7 @@ public class Buscador extends javax.swing.JFrame {
 
             }
             //la lista de canciones ya estara llena para escribir las canciones en el archivo
-            Archivo archivo=new Archivo();
+          
             try {
                 archivo.escribir(canciones);
                 Principal ventana=new Principal();
